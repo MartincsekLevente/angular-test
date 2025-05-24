@@ -1,0 +1,24 @@
+.home-container {
+    padding: 3rem 1rem;
+
+
+    .home-text {
+        font-size: 2rem;
+    }
+
+    .home-input-container {
+        display: flex;
+        align-items: center;
+        padding-top: 1rem;
+        gap: 1rem;
+        font-size: 1.5rem;
+
+        .home-input-title {
+
+        }
+
+        .home-input-field {
+            font-size: inherit;
+        }
+    }
+}

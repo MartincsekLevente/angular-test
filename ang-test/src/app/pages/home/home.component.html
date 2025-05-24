@@ -1,0 +1,12 @@
+<div class="home-container">
+    <div class="home-text">
+        {{ homeTitle() }}
+    </div>
+    <div class="home-input-container">
+        <div class="home-input-title">
+            {{inputText() || "Type Something:"}}
+        </div>
+        <input type="text" class="home-input-field" [(ngModel)]="inputText">
+    </div>
+    <app-counter/>
+</div>

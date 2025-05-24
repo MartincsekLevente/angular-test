@@ -1,0 +1,10 @@
+<div class="counter-container">
+    <div class="counter-number">
+        {{ counter() }}
+    </div>
+    <div class="counter-btn-container">
+        <button class="counter-btn" (click)="handleDecrementButtonClick()">-</button>
+        <button class="counter-btn" (click)="handleResetButtonClick()">Reset</button>
+        <button class="counter-btn" (click)="handleIncrementButtonClick()">+</button>
+    </div>
+</div>
