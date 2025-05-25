@@ -8,7 +8,6 @@ import { DEFAULT_COUNTER_VALUE, MAX_COUNTER_VALUE, MIN_COUNTER_VALUE } from '../
     styleUrl: './counter.component.scss'
 })
 export class CounterComponent {
-
     counter = signal(DEFAULT_COUNTER_VALUE);
 
     handleIncrementButtonClick() {
