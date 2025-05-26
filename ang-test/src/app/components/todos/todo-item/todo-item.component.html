@@ -1,3 +1,4 @@
 <input type="checkbox" name="todo-checkbox" [id]="'todo-checkbox-'+todoDetails().id"
-       [checked]="todoDetails().completed">
-<label [for]="'todo-checkbox-'+todoDetails().id">{{ todoDetails().todo }}</label>
+       [checked]="todoDetails().completed" (change)="this.todoClicked()">
+<label [for]="'todo-checkbox-'+todoDetails().id" appHighlightCompletedTodo
+       [isCompleted]="todoDetails().completed">{{ todoDetails().todo | titlecase }}</label>

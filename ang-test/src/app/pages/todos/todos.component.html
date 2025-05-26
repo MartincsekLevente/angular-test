@@ -1,3 +1,7 @@
-<ng-container *ngFor="let todoItem of todoItems()">
-    <app-todo-item [todoDetails]="todoItem"></app-todo-item>
-</ng-container>
+<form class=search-todos-container">
+    <label>Filter Todos</label>
+    <input name="searchQuery" type="text" placeholder="Search todos..." [value]="searchQuery()"/>
+</form>
+@for (todo of todoItems() | filterTodos : searchQuery(); track todo.id) {
+    <app-todo-item [todoDetails]="todo" (todoToggled)="handleTodoClicked($event)"></app-todo-item>
+}

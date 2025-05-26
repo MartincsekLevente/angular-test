@@ -4,12 +4,15 @@ import { TodoItemComponent } from '../../components/todos/todo-item/todo-item.co
 import { NgFor } from '@angular/common';
 import { Todo } from '../../model/todo.type';
 import { catchError, Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { FilterTodosPipe } from '../../pipes/filter-todos.pipe';
 
 @Component({
     selector: 'app-todos',
     imports: [
         TodoItemComponent,
-        NgFor
+        FormsModule,
+        FilterTodosPipe
     ],
     templateUrl: './todos.component.html',
     styleUrl: './todos.component.scss'
@@ -18,6 +21,7 @@ export class TodosComponent implements OnInit, OnDestroy {
     todosService = inject(TodosService);
     todoItemsSubscription!: Subscription;
     todoItems = signal<Array<Todo>>([]);
+    searchQuery = signal("");
 
     ngOnInit() {
         this.todoItemsSubscription = this.todosService
@@ -29,12 +33,25 @@ export class TodosComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((todos) => {
-                console.log(todos);
                 this.todoItems.set(todos.todos);
             });
     }
 
     ngOnDestroy() {
         this.todoItemsSubscription.unsubscribe();
+    }
+
+    handleTodoClicked(todoItem: Todo) {
+        this.todoItems.update((todos) => {
+            return todos.map((todo) => {
+                if (todo.id === todoItem.id) {
+                    return {
+                        ...todo,
+                        completed: !todo.completed,
+                    }
+                }
+                return todo;
+            })
+        })
     }
 }
